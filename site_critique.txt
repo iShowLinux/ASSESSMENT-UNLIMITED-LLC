@@ -1,0 +1,141 @@
+Assessments Unlimited, LLC — Site Critique
+Responsiveness & Modern Styles
+Generated: Jun 20, 2026
+
+Local preview
+- Server running at http://127.0.0.1:8080
+- Browser proxy at http://127.0.0.1:52143
+- Unpacked template: c:\Users\mrjul\Desktop\ASSESSMENT-UNLIMITED-LLC\template.html
+
+Project note
+This is not a conventional project. It is a single-file self-extracting bundle: everything (HTML template, React, Babel, Framer Motion, fonts, video, favicon) is embedded as base64/gzip in Assessments Unlimited.html and unpacked in the browser at runtime.
+
+---
+
+RESPONSIVENESS
+
+Strengths
+1. Tailwind-first responsive layout
+   - Uses md: and lg: prefixes consistently.
+   - Grids, padding, and type scale adapt across breakpoints.
+
+2. Fluid containers
+   - Sections use max-w-[1400px] mx-auto with px-8 md:px-16 lg:px-20.
+   - Content does not touch viewport edges.
+
+3. Sensible breakpoint usage
+   - Hero headline: text-6xl -> md:text-7xl -> lg:text-[5.5rem]
+   - Service grid: grid-cols-1 -> md:grid-cols-2 -> lg:grid-cols-6
+   - Contact cards: grid-cols-1 -> md:grid-cols-2
+
+Weaknesses & Bugs
+1. No mobile navigation
+   - Navbar links are hidden below md with hidden md:flex.
+   - There is no hamburger menu, drawer, or fallback nav for mobile.
+   - Location: template.html:909
+
+2. Oversized fixed logo
+   - Logo is hardcoded w-48 h-48 = 192 x 192 px.
+   - It dominates the navbar and can collide with hero content.
+   - Location: template.html:904
+
+3. Very tight hero line-height
+   - .hero-headline-wrap p { line-height: 0.8; }
+   - Large words like "Comprehensive" and "Assessments" can overlap on narrow screens.
+   - Location: template.html:1056-1059
+
+4. Non-wrapping trust bar labels
+   - whitespace-nowrap on small labels in a 2-column grid.
+   - Labels like "Experience" and "Since 2004" can overflow cells on small phones.
+   - Location: template.html:1102
+
+5. Missing provider portrait
+   - The Our Team section uses <image-slot>, a custom element that is never defined.
+   - The portrait renders as an empty glass box.
+   - Location: template.html:1376-1383
+
+6. Broken logo image references
+   - Navbar and footer reference logo.png, but it is not embedded in the bundle.
+   - Locations: template.html:905, 1615
+
+7. Fixed hero top padding
+   - pt-56 pushes the headline far down on mobile.
+   - Combined with the 192 px logo, this wastes a lot of vertical space.
+   - Location: template.html:1038
+
+8. Heavy background video for mobile
+   - BackgroundVideo fetches the entire video as a Blob and probes it in a throwaway <video>.
+   - No poster image fallback, no reduced data mode, no media-query swap.
+   - Location: template.html:655-661
+
+---
+
+MODERN STYLES
+
+Strengths
+1. Cohesive dark theme
+   - Deep navy (#11203a) with cyan accent (#2D9CDB) is professional and on-brand.
+
+2. Glassmorphism
+   - liquid-glass and liquid-glass-strong use backdrop-filter with subtle gradients.
+   - Modern frosted-card aesthetic.
+
+3. Motion design
+   - Scroll-triggered fade/blur animations via Framer Motion.
+   - ECG line draw and globe rotation add visual interest.
+
+4. Subset font loading
+   - Inter is loaded with unicode-range subsets for performance.
+
+Weaknesses
+1. Runtime JSX transform
+   - Babel transforms type="text/babel" scripts in the browser.
+   - This is slow, heavy, and not how modern React apps are built.
+   - Locations: template.html:606, 612-1649
+
+2. Inline non-tree-shaken Tailwind
+   - The generated Tailwind CSS variable block is large and injected inline.
+   - Location: template.html:471
+
+3. No reduced-motion support
+   - Animations run regardless of prefers-reduced-motion.
+   - Locations: ecg-draw (template.html:491-500), globe-rotate (template.html:503-507)
+
+4. Missing semantic landmarks
+   - The page renders into a single <div id="root">.
+   - No <main>, <header>, <footer>, or <nav> landmarks.
+   - Location: template.html:612-613
+
+5. Custom <image-slot> placeholder
+   - Appears to be a leftover from a visual builder.
+   - Never registered as a custom element.
+   - Location: template.html:1376-1383
+
+6. Footer links to missing pages
+   - services.html, veterans.html, contact.html are referenced.
+   - Only one HTML file exists in the project.
+   - Locations: template.html:1619-1621
+
+7. Hardcoded copyright year
+   - "2026" will need manual updating.
+   - Location: template.html:1616
+
+---
+
+RECOMMENDATIONS
+
+1. Add a mobile hamburger menu and drawer for the navbar.
+2. Reduce logo size to w-12 h-12 on mobile and w-16 h-16 on desktop.
+3. Increase hero line-height to at least 0.9-1.0 and test on 320 px wide screens.
+4. Remove whitespace-nowrap from trust bar labels or let them stack.
+5. Replace <image-slot> with a standard <img> and embed the real provider portrait.
+6. Embed logo.png in the bundle or replace it with an inline SVG.
+7. Respect prefers-reduced-motion for all animations.
+8. Pre-build the React app instead of transforming JSX in the browser.
+9. Add semantic HTML landmarks and proper ARIA labels.
+10. Provide a static poster/fallback for the background video on mobile.
+
+---
+
+Summary
+The site looks visually modern and on-brand, but several functional gaps would break the mobile experience: missing mobile nav, oversized logo, tight line-height, broken/missing assets, and no reduced-motion support. The underlying architecture (runtime JSX bundle unpacking) is also unusual and not optimal for production performance.

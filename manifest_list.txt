@@ -1,0 +1,24 @@
+
+uuid                                 mime            compressed data_length
+----                                 ----            ---------- -----------
+a13546e0-3531-4c5c-8223-2642825389ff video/mp4            False     2170676
+aef39fd5-c133-4a58-b2da-94ea1ab988b5 image/png            False     2876984
+770b5ef6-4ee3-4e1b-8381-4e3634d939a1 text/javascript       True       38500
+870754ac-8c6c-4990-9d67-f964f33e5091 text/javascript       True       61772
+d49367a1-09af-435d-a10b-b3ff79b4e9e2 text/javascript       True      320156
+c44e368d-0ac3-459f-9145-970ea9318a44 text/javascript       True      890372
+bb7214bf-95af-417e-bc9f-0e057fc556e9 text/javascript       True       13928
+5856d4ea-5693-466a-b522-8d3f70cf7844 font/woff2           False       34460
+f805a47a-447e-4474-ae7a-0bd715d14801 font/woff2           False       24992
+5d2f2e2a-e5c4-4b7a-81ff-d053ff3a0161 font/woff2           False       15032
+9897636d-7af4-462e-a415-1685c93633ff font/woff2           False       25392
+4c9c283d-77f1-4e24-9092-5bba73f7b7e8 font/woff2           False       13708
+44920ccc-4ed7-43f7-b83f-809e665714e8 font/woff2           False      113696
+a5747e9c-55e5-46c9-a850-b5f9da87df24 font/woff2           False       64576
+b5f7dac0-87f2-40ad-9ec3-da23f29c583e font/woff2           False       28192
+aafe1227-b6df-47fb-a310-bf0249fe951c font/woff2           False       12076
+2534e133-e0c1-47c8-9d56-98dd28181cb8 font/woff2           False       27976
+31f8d393-548f-4f5c-b67c-32aab49e2198 font/woff2           False       51280
+
+
+
